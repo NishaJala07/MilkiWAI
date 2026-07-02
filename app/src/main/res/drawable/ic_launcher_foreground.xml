@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- This will display your app_logo.png as the icon foreground -->
+    <item
+        android:drawable="@drawable/app_logo"
+        android:width="72dp"
+        android:height="72dp"
+        android:gravity="center" />
+</layer-list>

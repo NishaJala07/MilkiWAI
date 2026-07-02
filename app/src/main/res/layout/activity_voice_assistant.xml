@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/voice_assistant_bg">
+
+    <!-- Close Button -->
+    <ImageButton
+        android:id="@+id/btnClose"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@android:color/white" />
+
+    <TextView
+        android:id="@+id/tvVoiceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MilkiWAI AI"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btnClose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnClose" />
+
+    <!-- Wave Animation Container -->
+    <FrameLayout
+        android:id="@+id/waveContainer"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Concentric circles for animation -->
+        <View
+            android:id="@+id/wave1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/voice_wave_circle"
+            android:visibility="invisible" />
+
+        <View
+            android:id="@+id/wave2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/voice_wave_circle"
+            android:visibility="invisible" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnMic"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_gravity="center"
+            android:src="@android:drawable/ic_btn_speak_now"
+            app:backgroundTint="@color/surface"
+            app:fabCustomSize="88dp"
+            app:iconSize="40dp"
+            app:maxImageSize="48dp"
+            app:tint="@color/primary" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Tap to Speak"
+        android:textColor="#B3FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/waveContainer" />
+
+    <!-- Voice Transcript Area -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="32dp"
+        app:cardBackgroundColor="#26FFFFFF"
+        app:cardCornerRadius="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/layoutSuggested"
+        app:strokeWidth="0dp">
+
+        <TextView
+            android:id="@+id/tvTranscript"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="60dp"
+            android:padding="20dp"
+            android:text="..."
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Suggested Commands -->
+    <LinearLayout
+        android:id="@+id/layoutSuggested"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suggested Commands"
+            android:textColor="#B3FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupSuggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/suggestion1"
+                style="@style/Widget.Material3.Chip.Assist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Customer"
+                app:chipBackgroundColor="#1AFFFFFF"
+                android:textColor="@android:color/white" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/suggestion2"
+                style="@style/Widget.Material3.Chip.Assist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Generate Bills"
+                app:chipBackgroundColor="#1AFFFFFF"
+                android:textColor="@android:color/white" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/suggestion3"
+                style="@style/Widget.Material3.Chip.Assist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pending Payments"
+                app:chipBackgroundColor="#1AFFFFFF"
+                android:textColor="@android:color/white" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/suggestion4"
+                style="@style/Widget.Material3.Chip.Assist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Milk Requirement"
+                app:chipBackgroundColor="#1AFFFFFF"
+                android:textColor="@android:color/white" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

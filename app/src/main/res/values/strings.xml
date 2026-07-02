@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MilkiWAI</string>
+    <string name="delivery_date_format">Date: %1$s</string>
+    <string name="view_detailed_summary">View Detailed Summary</string>
+    <string name="mark_as_missed">Mark as Missed</string>
+    <string name="missed_confirmation_msg">Are you sure you want to mark %1$s\'s delivery as missed?</string>
+    <string name="reason_optional">Reason (optional)</string>
+    <string name="missed">Missed</string>
+    <string name="cancel">Cancel</string>
+    <string name="chip_all">All</string>
+    <string name="chip_pending">Pending</string>
+    <string name="chip_completed">Completed</string>
+    <string name="total_qty_to_deliver">Total Qty to Deliver</string>
+    <string name="sample_qty">45 L / 150 L</string>
+</resources>

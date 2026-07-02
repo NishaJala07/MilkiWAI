@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MilkiWAI">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.customer.AddCustomerActivity" />
+        <activity android:name=".ui.customer.CustomerListActivity" />
+        <activity android:name=".ui.brand.AddBrandActivity" />
+        <activity android:name=".ui.brand.BrandListActivity" />
+        <activity android:name=".ui.customer.CustomerSubscriptionActivity" />
+        <activity android:name=".ui.customer.QuantityChangeActivity" />
+        <activity android:name=".ui.billing.GenerateBillActivity" />
+        <activity android:name=".ui.billing.BillListActivity" />
+        <activity android:name=".ui.billing.BillDetailsActivity" />
+        <activity android:name=".ui.billing.PaymentActivity" />
+        <activity android:name=".ui.billing.PaymentHistoryActivity" />
+        <activity android:name=".ui.customer.VacationActivity" />
+        <activity android:name=".ui.reports.ReportsActivity" />
+        <activity android:name=".ui.reports.ProcurementReportActivity" />
+        <activity android:name=".ui.procurement.ProcurementActivity" />
+        <activity android:name=".ui.delivery.DeliveryActivity" />
+        <activity android:name=".ui.delivery.DeliverySummaryActivity" />
+        <activity android:name=".ui.RouteActivity" />
+        <activity android:name=".ui.RouteMapActivity" />
+        <activity android:name=".ui.PaymentReminderActivity" />
+        <activity android:name=".ui.settings.SettingsActivity" />
+        <activity android:name=".ui.auth.LoginActivity" />
+        <activity android:name=".ui.auth.RegisterActivity" />
+        <activity android:name=".ui.VoiceAssistantActivity"
+            android:theme="@style/Theme.MilkiWAI" />
+        <activity android:name=".ui.register.MilkRegisterActivity" />
+        <activity android:name=".ui.register.HistoricalEntryActivity" />
+        <activity android:name=".ui.profile.ProfileActivity" />
+        <activity android:name=".ui.RequestParserActivity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_API_KEY_HERE" />
+    </application>
+
+</manifest>

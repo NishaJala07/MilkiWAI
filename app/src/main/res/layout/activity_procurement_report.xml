@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="Procurement Report"
+        app:titleTextColor="@android:color/white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Tomorrow's Purchase Requirement"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="#F5F5F5"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProcurement"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvTotalQty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Required: 0 L"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvSuggestedQty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Suggested (inc. 5% buffer): 0 L"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorPrimary"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

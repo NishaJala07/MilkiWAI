@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvBrandName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amul Gold"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACTIVE"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/status_bg"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/tvQuantityFlow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1L → 2L"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/design_default_color_primary"/>
+
+        <TextView
+            android:id="@+id/tvDateRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15 Jun - 20 Jun"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/tvRemarks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Festival"
+            android:textSize="14sp"
+            android:fontStyle="italic"
+            android:layout_marginTop="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_marginTop="8dp">
+
+            <ImageButton
+                android:id="@+id/btnEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_edit"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_marginEnd="16dp"/>
+
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_delete"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

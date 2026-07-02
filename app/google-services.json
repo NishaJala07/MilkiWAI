@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "392865591829",
+    "project_id": "milkwai-7d641",
+    "storage_bucket": "milkwai-7d641.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392865591829:android:fd9dd34d573f1a14ef541c",
+        "android_client_info": {
+          "package_name": "com.example.milkiwai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvcDuIJmbE5GL0YK_ugwEjszKfyXFNkwU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
