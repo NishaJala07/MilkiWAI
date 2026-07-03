@@ -23,5 +23,11 @@ class BillRepository(
         billDao.updateBill(bill)
     }
 
+    suspend fun updatePaymentStatus(billId: Int, status: String) {
+        billDao.updatePaymentStatus(billId, status)
+    }
+
+    suspend fun getBillById(billId: Int) = billDao.getBillById(billId)
+
     fun getItemsForBill(billId: Int) = itemDao.getItemsWithBrandByBill(billId)
 }

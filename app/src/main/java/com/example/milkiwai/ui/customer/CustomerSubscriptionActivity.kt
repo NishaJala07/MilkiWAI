@@ -51,7 +51,7 @@ class CustomerSubscriptionActivity : AppCompatActivity() {
 
         val adapter = SubscriptionAdapter(
             onEdit = { item -> showSubscriptionDialog(item.subscription) },
-            onDelete = { item -> showDeleteConfirmation(item.subscription, item.brand.brandName) }
+            onDelete = { item -> showDeleteConfirmation(item.subscription, item.brand?.brandName ?: "Unknown") }
         )
         rvSubscriptions.adapter = adapter
         rvSubscriptions.layoutManager = LinearLayoutManager(this)

@@ -33,6 +33,8 @@ class PaymentReminderActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener { finish() }
 
         val rvPendingBills = findViewById<RecyclerView>(R.id.rvPendingBills)
+        val llNoRecords = findViewById<android.view.View>(R.id.llNoRecords)
+        
         val adapter = ReminderAdapter(
             onSms = { bill -> sendSmsReminder(bill) },
             onWhatsApp = { bill -> sendWhatsAppReminder(bill) }
@@ -42,6 +44,14 @@ class PaymentReminderActivity : AppCompatActivity() {
         viewModel.allBills.observe(this) { bills ->
             val pending = bills.filter { it.bill.paymentStatus == "PENDING" }
             adapter.setBills(pending)
+            
+            if (pending.isEmpty()) {
+                llNoRecords.visibility = android.view.View.VISIBLE
+                rvPendingBills.visibility = android.view.View.GONE
+            } else {
+                llNoRecords.visibility = android.view.View.GONE
+                rvPendingBills.visibility = android.view.View.VISIBLE
+            }
         }
     }
 

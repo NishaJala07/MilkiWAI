@@ -52,9 +52,10 @@ class DailyReminderWorker(context: Context, params: WorkerParameters) : Coroutin
                     val days = java.util.concurrent.TimeUnit.MILLISECONDS.toDays(diff)
                     
                     if (days >= 7) {
+                        val customerName = item.customer?.name ?: "Unknown Customer"
                         notificationHelper.showNotification(
                             "Payment Reminder",
-                            "Bill for ${item.customer.name} (₹${item.bill.totalAmount}) is pending for $days days."
+                            "Bill for $customerName (₹${item.bill.totalAmount}) is pending for $days days."
                         )
                     }
                 }

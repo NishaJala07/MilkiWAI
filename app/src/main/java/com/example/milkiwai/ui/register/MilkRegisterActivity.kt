@@ -37,6 +37,9 @@ class MilkRegisterActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener { finish() }
 
         val rvRegister = findViewById<RecyclerView>(R.id.rvRegister)
+        val llNoRecords = findViewById<LinearLayout>(R.id.llNoRecords)
+        val registerScrollView = findViewById<android.view.View>(R.id.registerScrollView)
+        
         adapter = RegisterAdapter()
         rvRegister.adapter = adapter
         rvRegister.layoutManager = LinearLayoutManager(this)
@@ -45,12 +48,19 @@ class MilkRegisterActivity : AppCompatActivity() {
         setupHeader()
 
         subscriptionViewModel.allSubscriptions.observe(this) { subscriptions ->
-            adapter.setSubscriptions(subscriptions)
-            loadTransactions()
+            if (subscriptions.isEmpty()) {
+                llNoRecords.visibility = android.view.View.VISIBLE
+                registerScrollView.visibility = android.view.View.GONE
+            } else {
+                llNoRecords.visibility = android.view.View.GONE
+                registerScrollView.visibility = android.view.View.VISIBLE
+                adapter.setSubscriptions(subscriptions)
+                loadTransactions()
+            }
         }
 
         findViewById<com.google.android.material.button.MaterialButton>(R.id.btnSelectMonth).setOnClickListener {
-            // Simple month selector logic could go here
+            showMonthYearPicker()
         }
 
         findViewById<com.google.android.material.button.MaterialButton>(R.id.btnGenerateBills).setOnClickListener {
@@ -60,6 +70,50 @@ class MilkRegisterActivity : AppCompatActivity() {
         findViewById<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>(R.id.btnHistoricalEntry).setOnClickListener {
             startActivity(Intent(this, HistoricalEntryActivity::class.java))
         }
+    }
+
+    private fun showMonthYearPicker() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_add_quantity_change, null)
+        // Re-using a generic dialog structure if specific one doesn't exist, 
+        // but better to create a clean one for month/year.
+        // Actually, let's use a standard AlertDialog with a custom layout for NumberPickers.
+        
+        val dialogBuilder = androidx.appcompat.app.AlertDialog.Builder(this)
+        val container = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER
+            setPadding(50, 40, 50, 10)
+        }
+
+        val monthPicker = android.widget.NumberPicker(this).apply {
+            minValue = 0
+            maxValue = 11
+            displayedValues = java.text.DateFormatSymbols().months
+            value = currentCalendar.get(Calendar.MONTH)
+            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+        }
+
+        val yearPicker = android.widget.NumberPicker(this).apply {
+            minValue = 2020
+            maxValue = 2030
+            value = currentCalendar.get(Calendar.YEAR)
+            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+        }
+
+        container.addView(monthPicker)
+        container.addView(yearPicker)
+
+        dialogBuilder.setTitle("Select Month & Year")
+            .setView(container)
+            .setPositiveButton("OK") { _, _ ->
+                currentCalendar.set(Calendar.MONTH, monthPicker.value)
+                currentCalendar.set(Calendar.YEAR, yearPicker.value)
+                updateMonthDisplay()
+                setupHeader()
+                loadTransactions()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 
     private fun setupHeader() {

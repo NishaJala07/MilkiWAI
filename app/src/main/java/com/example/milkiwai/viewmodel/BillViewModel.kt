@@ -108,11 +108,14 @@ class BillViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun markAsPaid(bill: MonthlyBill) {
+    fun markAsPaid(billId: Int) {
         viewModelScope.launch {
-            billRepository.updateBill(bill.copy(paymentStatus = "PAID"))
-            // Backup bill item not strictly needed if we backup the bill doc again
-            firebaseRepo.backupBills(listOf(bill.copy(paymentStatus = "PAID")), emptyList())
+            billRepository.updatePaymentStatus(billId, "PAID")
+            // Fetch updated bill for firebase backup if needed
+            val updatedBill = billRepository.getBillById(billId)
+            updatedBill?.let {
+                firebaseRepo.backupBills(listOf(it), emptyList())
+            }
         }
     }
 

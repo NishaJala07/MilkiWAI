@@ -15,6 +15,12 @@ interface MonthlyBillDao {
     @Update
     suspend fun updateBill(bill: MonthlyBill)
 
+    @Query("SELECT * FROM monthly_bills WHERE id = :billId")
+    suspend fun getBillById(billId: Int): MonthlyBill?
+
+    @Query("UPDATE monthly_bills SET paymentStatus = :status WHERE id = :billId")
+    suspend fun updatePaymentStatus(billId: Int, status: String)
+
     @Transaction
     @Query("SELECT * FROM monthly_bills ORDER BY year DESC, month DESC")
     fun getAllBillsWithCustomer(): LiveData<List<com.example.milkiwai.data.entity.BillWithCustomer>>

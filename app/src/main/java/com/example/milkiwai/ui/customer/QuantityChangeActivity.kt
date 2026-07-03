@@ -58,7 +58,7 @@ class QuantityChangeActivity : AppCompatActivity() {
 
         val adapter = QuantityChangeAdapter(
             onEdit = { item -> showChangeDialog(item.quantityChange) },
-            onDelete = { item -> showDeleteConfirmation(item.quantityChange, item.brand.brandName) }
+            onDelete = { item -> showDeleteConfirmation(item.quantityChange, item.brand?.brandName ?: "Unknown Brand") }
         )
         rvChanges.adapter = adapter
         rvChanges.layoutManager = LinearLayoutManager(this)
@@ -94,7 +94,7 @@ class QuantityChangeActivity : AppCompatActivity() {
         voiceInputHelper.attachTo(dialogView.findViewById(R.id.tilNewQty))
         voiceInputHelper.attachTo(dialogView.findViewById(R.id.tilRemarks))
 
-        val brandNames = customerSubscriptions.map { it.brand.brandName }
+        val brandNames = customerSubscriptions.map { it.brand?.brandName ?: "Unknown Brand" }
         val brandAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, brandNames)
         brandAutoComplete.setAdapter(brandAdapter)
 
@@ -108,7 +108,7 @@ class QuantityChangeActivity : AppCompatActivity() {
         }
 
         if (existingChange != null) {
-            val brandIndex = customerSubscriptions.indexOfFirst { it.brand.id == existingChange.brandId }
+            val brandIndex = customerSubscriptions.indexOfFirst { it.brand?.id == existingChange.brandId }
             if (brandIndex != -1) {
                 brandAutoComplete.setText(brandNames[brandIndex], false)
                 etCurrentQty.setText(existingChange.oldQuantity.toString())
@@ -145,7 +145,7 @@ class QuantityChangeActivity : AppCompatActivity() {
                     val change = QuantityChange(
                         id = existingChange?.id ?: 0,
                         customerId = customerId,
-                        brandId = brand.id,
+                        brandId = brand?.id ?: 0,
                         oldQuantity = customerSubscriptions[selectedIndex].subscription.quantity,
                         newQuantity = newQty,
                         startDate = start,

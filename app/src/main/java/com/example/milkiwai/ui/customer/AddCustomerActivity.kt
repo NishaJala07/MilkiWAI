@@ -130,8 +130,8 @@ class AddCustomerActivity : AppCompatActivity() {
                 if (subs.isNotEmpty()) {
                     val primarySub = subs[0]
                     existingSubscriptionId = primarySub.subscription.id
-                    selectedBrandId = primarySub.brand.id
-                    spinnerBrands.setText(primarySub.brand.brandName, false)
+                    selectedBrandId = primarySub.brand?.id ?: -1
+                    spinnerBrands.setText(primarySub.brand?.brandName ?: "", false)
                     etQuantity.setText(primarySub.subscription.quantity.toString())
                 }
             }

@@ -169,10 +169,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, com.example.milkiwai.ui.reports.ReportsActivity::class.java))
         }
 
-        findViewById<View>(R.id.btnGenerateBills).setOnClickListener {
-            startActivity(Intent(this, com.example.milkiwai.ui.billing.GenerateBillActivity::class.java))
-        }
-
         findViewById<View>(R.id.btnMilkRegister).setOnClickListener {
             startActivity(Intent(this, com.example.milkiwai.ui.register.MilkRegisterActivity::class.java))
         }
@@ -271,10 +267,27 @@ class MainActivity : AppCompatActivity() {
     private fun setupRecentActivity() {
         val rvRecentPayments = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rvRecentPayments)
 
-        val billAdapter = BillAdapter({ bill ->
-            // On Click
-        }, { bill ->
-            // On Pay
+        val billAdapter = BillAdapter({ item ->
+            val intent = Intent(this, com.example.milkiwai.ui.billing.BillDetailsActivity::class.java).apply {
+                putExtra("BILL_ID", item.bill.id)
+                putExtra("CUSTOMER_NAME", item.customer?.name ?: "Unknown")
+                putExtra("MONTH", item.bill.month)
+                putExtra("YEAR", item.bill.year)
+                putExtra("TOTAL", item.bill.totalAmount)
+                putExtra("STATUS", item.bill.paymentStatus)
+                putExtra("PDF_PATH", item.bill.pdfPath)
+                putExtra("CUSTOMER_MOBILE", item.customer?.mobile ?: "")
+            }
+            startActivity(intent)
+        }, { item ->
+            val monthName = java.text.DateFormatSymbols().months[item.bill.month - 1]
+            val intent = Intent(this, com.example.milkiwai.ui.billing.PaymentActivity::class.java).apply {
+                putExtra("BILL_ID", item.bill.id)
+                putExtra("AMOUNT", item.bill.totalAmount)
+                putExtra("CUSTOMER_NAME", item.customer?.name ?: "Unknown")
+                putExtra("MONTH_YEAR", "$monthName ${item.bill.year}")
+            }
+            startActivity(intent)
         })
         rvRecentPayments.layoutManager = LinearLayoutManager(this)
         rvRecentPayments.adapter = billAdapter

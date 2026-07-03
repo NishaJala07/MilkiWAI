@@ -24,6 +24,7 @@ class BillListActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener { finish() }
 
         val rvBills = findViewById<RecyclerView>(R.id.rvBills)
+        val llNoBills = findViewById<android.view.View>(R.id.llNoBills)
         val adapter = BillAdapter(
             onClick = { item ->
                 val intent = Intent(this, BillDetailsActivity::class.java).apply {
@@ -55,6 +56,8 @@ class BillListActivity : AppCompatActivity() {
 
         viewModel.allBills.observe(this) { bills ->
             adapter.setBills(bills)
+            llNoBills.visibility = if (bills.isEmpty()) android.view.View.VISIBLE else android.view.View.GONE
+            rvBills.visibility = if (bills.isEmpty()) android.view.View.GONE else android.view.View.VISIBLE
         }
     }
 }

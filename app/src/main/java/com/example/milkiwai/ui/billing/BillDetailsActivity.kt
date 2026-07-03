@@ -93,17 +93,7 @@ class BillDetailsActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btnMarkPaid).setOnClickListener {
-            val bill = MonthlyBill(
-                id = billId,
-                customerId = 0, 
-                month = month,
-                year = year,
-                totalAmount = total,
-                billDate = "",
-                paymentStatus = "PAID",
-                pdfPath = pdfPath
-            )
-            viewModel.markAsPaid(bill)
+            viewModel.markAsPaid(billId)
             tvStatusBadge.text = "PAID"
             tvStatusBadge.setTextColor(Color.parseColor("#43A047"))
             tvStatusBadge.setBackgroundColor(Color.parseColor("#E8F5E9"))
